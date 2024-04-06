@@ -10,8 +10,11 @@ public interface MyList<T> {
     void addFirst(T element);
     void addLast(T element);
     void addAll(Collection<? extends T> collection);
+    void addAll(int index, Collection<? extends T> collection);
 
     T get(int index);
+    int indexOf(Object o);
+    void set(int index, T element);
 
     void remove(int index);
     void removeFirst();

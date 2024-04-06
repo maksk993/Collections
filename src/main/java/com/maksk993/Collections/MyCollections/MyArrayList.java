@@ -75,9 +75,30 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    public void addAll(int index, Collection<? extends T> collection) {
+        for (T element : collection){
+            add(index++, element);
+        }
+    }
+
+    @Override
     public T get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= m_size) throw new IndexOutOfBoundsException(String.valueOf(index));
         return m_data[index];
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        for (int i = 0; i < m_size; i++){
+            if (m_data[i].equals((T) o)) return i;
+        }
+        return -1;
+    }
+
+    @Override
+    public void set(int index, T element) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= m_size) throw new IndexOutOfBoundsException(String.valueOf(index));
+        m_data[index] = element;
     }
 
     @Override
@@ -106,10 +127,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < m_size; i++){
-            if (m_data[i].equals((T) o)) return true;
-        }
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override

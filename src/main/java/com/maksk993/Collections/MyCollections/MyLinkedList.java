@@ -102,6 +102,13 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
+    public void addAll(int index, Collection<? extends T> collection) {
+        for (T element : collection){
+            add(index++, element);
+        }
+    }
+
+    @Override
     public T get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= m_size) throw new IndexOutOfBoundsException(String.valueOf(index));
         Node current = head;
@@ -111,6 +118,27 @@ public class MyLinkedList<T> implements MyList<T> {
             current = current.next;
         }
         return current.element;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        int index = 0;
+        for (Node current = head; current != null; current = current.next, index++){
+            if (current.element.equals((T) o)) return index;
+        }
+        return -1;
+    }
+
+    @Override
+    public void set(int index, T element) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= m_size) throw new IndexOutOfBoundsException(String.valueOf(index));
+        Node current = head;
+        int startIndex = 0;
+        while (startIndex != index){
+            startIndex++;
+            current = current.next;
+        }
+        current.element = element;
     }
 
     @Override
@@ -168,10 +196,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean contains(Object o) {
-        for (Node current = head; current != null; current = current.next){
-            if (current.element.equals((T) o)) return true;
-        }
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override

@@ -32,6 +32,7 @@ public class LinkedListMain {
         System.out.println("My linked list after all adds: " + mylist);
         System.out.println("Size: " + mylist.size() + "; isEmpty: " + mylist.isEmpty());
         System.out.println("Contains 555: " + mylist.contains(555) + "; Contains 200: " + mylist.contains(200));
+        System.out.println("Index of 555: " + mylist.indexOf(555) + "; Index of 200: " + mylist.indexOf(200));
 
         mylist.clear();
         System.out.println("My list after clear() " + mylist + "; Size: " + mylist.size());
